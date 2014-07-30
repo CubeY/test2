@@ -1,0 +1,429 @@
+/*
+ * Matrix
+ */
+.matrix_data { 
+}
+
+/*
+ * Conversation matrix
+ */
+#conversation_matrix {
+}
+
+/*
+ * Matrix header column positions
+ */
+.matrix_header_column_positions {
+    overflow: hidden;
+    margin-left: 52px; /* Matches width for row number */
+    clear:both;
+}
+
+.matrix_header_column_position {
+    width:454px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 200%;
+    float:left;
+    margin-right: 10px;
+}
+
+/*
+ * Conversation matrix row
+ */
+.conversation_matrix_row {
+    overflow:hidden;
+    clear:both;
+    margin-bottom:30px;
+}
+
+/*
+ * Matrix row number
+ */
+.conversation_matrix_row_number {
+    width:30px;
+    line-height: 50px;
+    text-align: center;
+    font-size: 200%;
+    float:left;
+    padding-right:10px;
+    padding-left:10px;
+} 
+
+/*
+ * Add matrix cell
+ */
+.add_conversation_matrix_cell {
+    float:left;
+    width:auto;
+    padding-right:25px;
+    padding-left:25px;
+    width:auto;
+}
+
+/*
+ * Conversation matrix cell
+ */
+.conversation_matrix_cell {
+	padding-top:10px;
+    padding-right:25px;
+    padding-left:25px;
+    border:2px solid;
+    overflow: hidden;
+    background-color: #FFCC66;
+    float:left;
+    margin-right: 10px;
+    width:400px;
+}
+
+/*
+ * Conversation matrix cell item
+ */
+.conversation_matrix_cell_item {
+	padding-top:10px;
+    padding-bottom:10px;
+    padding-right:10px;
+    padding-left:10px;
+	background-color: white;
+    border:2px solid;
+    overflow: hidden;
+    margin-bottom:10px;
+}
+
+/*
+ * Conversation matrix cell item formatting
+ */
+.conversation_cell_left_column {
+    float:left;
+}
+
+.conversation_cell_right_column {
+    float:right;
+    width:300px;
+}
+
+/*
+ * Initial status before phrases are entered
+ */
+.conversation_english_add_phrase {
+    text-align: center;
+    background-color: #B8BAB8;
+    color: white;
+    line-height: 30px;
+    border: 2px solid black;
+    font-size: 120%;
+
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:10px;
+    padding-left:10px;
+}
+
+.conversation_english_add_phrase:hover{
+    opacity: 0.9;
+    cursor:pointer;
+}
+
+.conversation_nonenglish_add_phrase {
+    text-align: center;
+    background-color: #369633;
+    color: white;
+    line-height: 30px;
+    border: 2px solid black;
+    font-size: 120%;
+    cursor:pointer;
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:10px;
+    padding-left:10px;
+}
+
+.conversation_nonenglish_add_phrase:hover{
+    opacity: 0.9;
+    cursor:pointer;
+}
+
+/*
+ * Avatar
+ */
+.conversation_avatar_area {
+    text-align: center;
+	width:60px;
+}
+
+.conversation_avatar_image {
+}
+
+.conversation_avatar_image img {
+	max-width:40px;
+}
+
+.conversation_avatar_name {
+    text-transform:capitalize;
+}
+
+/*
+ * Language level and difficulty
+ */
+.conversation_language_level_area {
+}
+
+.conversation_language_level {
+    border:2px solid #888;
+    margin-top:10px;
+    text-align: center;
+    color: #888;
+}
+
+.conversation_language_difficulty {
+    border:2px solid #888;
+    margin-top:5px;
+    text-align: center;
+    color: #888;
+}
+
+/*
+ * English phrase and metadata
+ */
+.conversation_english_phrase_area {
+	padding-top:5px;
+    padding-bottom:5px;
+    padding-right:10px;
+    padding-left:10px;
+/*    border:2px solid;
+*/    margin-bottom: 10px;
+}
+
+.conversation_english_phrase_and_metadata {
+	padding-top:5px;
+    padding-bottom:5px;
+    padding-right:10px;
+    padding-left:10px;
+    border:2px solid;
+}
+
+.conversation_english_phrase {
+}
+
+.conversation_english_phrase:hover {
+    color: #6666FF;
+    cursor:pointer;
+}
+
+.conversation_english_phrase_metadata {
+    color:#33CC66;
+    font-size: 80%;
+}
+
+.conversation_english_phrase_metadata:hover{
+    cursor:pointer;
+    color: #6666FF;
+}
+
+.conversation_english_phrase_distractors {
+    color:#738CF0;
+    font-size: 80%;
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+.conversation_english_phrase_distractors:hover{
+    cursor:pointer;
+    color: #6666FF;
+}
+
+/*
+ * English blanks and metadata
+ */
+.conversation_blank_phrase_area {
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:10px;
+    padding-left:10px;
+    margin-bottom:10px;
+/*    border:2px solid;
+*/}
+.conversation_blank_define {
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:10px;
+    padding-left:10px;
+    border:2px solid black;
+    color:#738CF0;
+    cursor:pointer;
+    text-decoration: underline;
+
+}
+
+.conversation_blank_define:hover {
+    color: #6666FF;
+}
+
+.blank_highlight {
+    color: red;
+}
+
+.conversation_blank_define:hover .blank_highlight {
+    color: #6666FF;
+}
+
+.conversation_blanks_area {
+    overflow: hidden;
+}
+
+.conversation_blank_area {
+}
+
+.conversation_blank_phrase {
+    float:left;
+    border:1px;
+    font-size: 80%;
+}
+
+.conversation_blank_phrase:hover {
+    cursor:pointer;
+    color: #6666FF;    
+}
+
+.conversation_blank_container {
+    border:1px;
+    overflow: hidden;
+}
+
+.conversation_blank_distractors {
+    color:#738CF0;
+    font-size: 80%;
+}
+
+.conversation_blank_distractors:hover {
+    color: #6666FF;
+}
+
+.conversation_blank_metadata {
+    color:red;
+}
+
+/*
+ * Non-english and metadata
+ */
+.conversation_nonenglish_phrase_area {
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:10px;
+    padding-left:10px;
+/*    border:2px solid;
+*/}
+
+.conversation_nonenglish_phrase_and_metadata {
+    padding-top:5px;
+    padding-bottom:5px;
+    padding-right:10px;
+    padding-left:10px;
+    border:2px solid;
+    font-size: 100%;    
+}
+
+.conversation_nonenglish_phrase {
+}
+
+.conversation_nonenglish_phrase:hover {
+    cursor:pointer;
+    color: #6666FF;
+}
+
+.conversation_nonenglish_phrase_distractors {
+    color:#738CF0;
+    font-size: 80%;
+    text-decoration: underline;
+    cursor:pointer;
+}
+
+.conversation_nonenglish_phrase_distractors:hover{
+    cursor:pointer;
+    color: #6666FF;
+}
+
+.distractor_separator {
+    float:left;
+    padding-left:3px;
+    padding-right:3px;
+}
+
+/*
+ * Comprehension matrix
+ */
+.data_matrix {
+    padding-top:0px;
+    padding-bottom:0px;
+    padding-right:10px;
+    padding-left:10px;
+    border-collapse:separate;
+    border-spacing:15px;
+}
+
+#comprehension_question_area {
+    padding-top:30px;
+    padding-bottom:10px;
+}
+
+#save_conversation {
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+.comprehension_item {
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-right:10px;
+    padding-left:10px;
+
+    border-top-style:solid;
+    border-right-style:solid;
+    border-bottom-style:solid;
+    border-left-style:solid;
+    border-width:1px;
+    width:252px;    
+
+    background-color:#C47451;
+    color: white;
+}
+
+.cell_dependency {
+    padding-bottom:3px;    
+}
+
+.add_comprehension_item {
+    padding-top:30px;
+    padding-bottom:30px;
+    padding-right:30px;
+    padding-left:30px;
+}
+
+.matrix_column_header {
+    text-align:center;
+    font-size:200%;
+}
+
+#comprehension_matrix {
+    border: thin solid gray;
+    background-color:#F8F8F8;
+}
+
+.comprehension_distractor_area {
+    width:245px;
+    min-height: 30px;
+    border: thin solid white;
+    color:white;
+    display:none;
+    margin-top:5px;
+    margin-bottom:5px;
+    padding:3px;
+}
+
+.add_comprehension_distractors {
+}
+
+.add_comprehension_distractors:hover {
+    cursor:pointer;
+    color:#CCFF99;
+}

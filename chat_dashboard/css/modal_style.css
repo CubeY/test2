@@ -1,0 +1,237 @@
+#modal_mask {
+    position:absolute;
+    left:0;
+    top:0;
+    z-index:1;
+    background-color:#000;
+    display:none;
+    opacity:0.4;
+    filter:alpha(opacity=40); /* For IE8 and earlier */
+}
+
+#modal_box .modal_window {
+    position:fixed;
+    left:0;
+    top:0;
+    width:66%;
+    height:66%;
+    display:none;
+    z-index:2;
+    padding:20px;
+    overflow:auto;
+}
+
+#modal_box #modal_dialog {
+    width:66%px;
+    height:66%px;
+    padding:25px;
+    background-color:#FFFFFF;
+}
+
+#modal_header {
+    position:relative;
+    text-align:center;
+}
+
+#modal_title {
+    font-size:125%
+}
+
+.modal_subtitle {
+    padding-top:25px;
+    padding-bottom:0px;
+    text-align:left;
+}
+
+#modal_close_button {
+    position:absolute;
+    left:95%;
+    top:0px;
+    cursor: pointer;
+}
+
+#modal_update_button {
+    padding-top:20px;
+    padding-bottom:20px;
+    text-align:center;
+}
+
+#machine_text_area {
+    padding-top:30px;
+    padding-bottom:30px;
+}
+
+.modal_section {
+    margin-top:20px;
+    text-align:left;
+    background-color:WhiteSmoke;
+    padding-top:10px;
+    padding-bottom:10px;
+    padding-right:10px;
+    padding-left:10px;
+}
+
+.modal_section_title {
+    margin-top:10px;
+    margin-bottom:20px;
+}
+
+.modal_item {
+    padding-top:10px;
+    padding-bottom:10px;
+    text-align:left;
+}
+
+.sentenceInput{
+    float:left; 
+    border:1px solid black; 
+    background-color:#F2F2F2; 
+    padding:5px;     
+    border: 1px solid #DBDBDB; 
+    cursor: hand; 
+    cursor: pointer;
+}
+
+.sentenceInput a { 
+    font-size:14px; 
+    margin-left: 10px; 
+    color:red; 
+    position:relative; 
+    bottom:2px;
+}
+
+.selected {
+    border: 1px solid blue; 
+    background-color: white;
+}
+
+.button {
+    display:none; 
+    height:40px; 
+    width:80px; 
+    font-size:16px; 
+    margin-top:10px; 
+    cursor: hand; 
+    cursor: pointer;
+}
+
+.create_button {
+    height:40px; 
+    width:80px; 
+    font-size:16px; 
+    margin-top:10px; 
+    cursor: hand; 
+    cursor: pointer;    
+}
+
+.closeButton {
+    font-size:12px; 
+    float:right;
+}
+
+.entryModifier{
+    margin-left:15px; 
+    font-size:11px; 
+    cursor: hand; 
+    cursor: pointer;
+}
+
+.showDistractorGroupOptions{
+    font-size:11px; 
+    cursor: hand; 
+    cursor: pointer;
+}
+
+.closeX{ 
+    float:right;
+    color:#444;
+    padding:0px 4px 0px 4px;
+    background-color:white;
+    font-size:24px;
+    cursor: hand; 
+    cursor: pointer;
+}
+
+.distractorItem{
+    cursor: hand; 
+    cursor: pointer;
+}
+
+.createCategory{
+    color:#FBFCDE; 
+    padding:10px;    
+}
+
+.itemData{
+    float:left;
+    width:100px;
+}
+
+.itemDivText{
+    margin-left:15px;
+}
+
+body {
+    font-size: 18px;
+    line-height: 26px;
+    background: white;
+}
+
+input, textarea, select { 
+    font-size: 16px; 
+    font-family: tahoma, arial, sans-serif; 
+}
+
+textarea { 
+    overflow: auto; 
+}
+
+.cl { 
+    display: block; 
+    height: 0; 
+    font-size: 0; 
+    line-height: 0; 
+    text-indent: -4000px; 
+    clear: both; 
+}
+
+.large_font {
+    font-size:20px;
+}
+
+.mainPhrase {
+    margin:5px; 
+    border:1px solid black; 
+    background-color:#CCC; 
+    padding:5px; 
+    border: 2px solid white; 
+    cursor: hand; 
+    cursor: pointer;
+}
+
+#sentenceArea {
+    margin-right:auto; 
+    margin-left:auto; 
+    background-color:white; 
+    width:700px;
+}
+
+#pickerArea {
+    margin:0px auto 0px auto; 
+    width:400px; 
+    color: white;
+}
+
+#distractorLightboxCover {
+    border: 18px solid #777; 
+    margin: 0px auto 0px auto; 
+    background-color: #444; 
+    width:700px; 
+    display:none; 
+    position:relative; 
+    top:50px;
+}
+
+#newCategory {
+    margin-top:10px;
+}

@@ -1,0 +1,209 @@
+ALTER TABLE `users_list` ADD `status` VARCHAR( 10 ) NOT NULL DEFAULT 'Y' AFTER `unique_user_id` ;
+
+ALTER TABLE `users_list` ADD `paypal_email` VARCHAR( 100 ) NOT NULL AFTER `email` ;
+
+ALTER TABLE `teacher_slots` ADD `empty_slot` TINYINT( 1 ) NOT NULL DEFAULT '0';
+
+ALTER TABLE `users_list` ADD `comment` VARCHAR( 1000 ) NOT NULL ;
+
+
+ALTER TABLE `teachers` DROP `teacher_reported_students`;
+
+ALTER TABLE  `users_list` ADD  `payment_info_sent` INT NOT NULL ;
+
+DELETE FROM `statuses` WHERE `statuses`.`id` = 5 LIMIT 1;
+
+
+
+CREATE TABLE IF NOT EXISTS `unique_user_id_change_log` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `user_id` int(11) NOT NULL,
+  `old_id` varchar(50) NOT NULL,
+  `new_id` varchar(50) NOT NULL,
+  `date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB  DEFAULT CHARSET=latin1 AUTO_INCREMENT=0 ;
+
+ALTER TABLE  `users_list` ADD  `first_paid_date` TIMESTAMP NOT NULL DEFAULT  '0000-00-00 00:00:00';
+
+
+
+=================================================================================================
+// NEW DB CHANGES WITH DATE AND COMMIT
+-------------------------------------------------------------------------------------------------
+
+
+#1------------------------------------------------------------------------------------------------
+#Date : 30/04/2014 Commit: Added a field for cancellation date (only for admin user)
+
+ALTER TABLE  `users_list` ADD  `cancellation_date` TIMESTAMP NOT NULL DEFAULT  '0000:00:00 00:00:00';
+
+
+#2--------------------------------------------------------------------------------------------------
+#Date:01/05/2014 Commit : reanme status name
+
+UPDATE `okpanda_teachers_accounts`.`statuses` SET `name` = 'F.T. expired without response' WHERE `statuses`.`id` =4;
+
+#3--------------------------------------------------------------------------------------------------
+#Date:02/05/2014 Commit : added two new column in student table
+
+ALTER TABLE  `users_list` ADD  `engagement_level` INT NOT NULL DEFAULT  '5',
+ADD  `life_status` VARCHAR( 50 ) NOT NULL ;
+
+
+#4--------------------------------------------------------------------------------------------------
+#Date:03/05/2014 Commit : added new table to track all student  statuses changes log
+
+CREATE TABLE IF NOT EXISTS `statuses_change_log` (
+  `id` int(100) NOT NULL AUTO_INCREMENT,
+  `user_id` int(100) NOT NULL,
+  `old_status` int(10) NOT NULL,
+  `new_status` int(10) NOT NULL,
+  `chenged_by` varchar(200) NOT NULL,
+  `chenged_date` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+
+#5--------------------------------------------------------------------------------------------------
+#Date:07/05/2014 Commit : added new column to track payment info sent date
+
+ALTER TABLE `users_list` ADD `payment_info_sent_date` TIMESTAMP NOT NULL AFTER `payment_info_sent` ;
+
+
+#6--------------------------------------------------------------------------------------------------
+#Date:08/05/2014 Commit : drop column max_studentsfrom teachers table
+
+ALTER TABLE `teachers` DROP `max_students`;
+
+
+
+#6--------------------------------------------------------------------------------------------------
+#Date:13/05/2014 Commit : add new student status
+INSERT INTO `okpanda_teachers_accounts`.`statuses` (`id`, `name`, `last_modified_by`, `last_modified`) VALUES (9, 'Registration link sent', '', NULL);
+
+
+#7-----------------------------------------------------------------------------------------------------
+#Date:17/05/2014 Commit : given administrator permission to Dada
+
+UPDATE `okpanda_teachers_accounts`.`user_master` SET `role` = 'administrator' WHERE `user_master`.`id` =58;
+
+
+#8-----------------------------------------------------------------------------------------------------
+#Date:18/05/2014 Commit : added new column
+
+ALTER TABLE `users_list` ADD `gender` VARCHAR( 1 ) NOT NULL ,
+ADD `dob` DATE NOT NULL ;
+
+#9-----------------------------------------------------------------------------------------------------
+#Date:18/05/2014 Commit : given administrator+teacher  permission to Dada
+
+UPDATE `okpanda_teachers_accounts`.`user_master` SET `role` = 'administrator,teacher' WHERE `user_master`.`id` =58;
+
+
+
+#10-----------------------------------------------------------------------------------------------------
+#Date:22/05/2014 Commit : added new field
+
+ALTER TABLE `users_list` ADD `old` INT( 1 ) NOT NULL ;
+
+
+#11-----------------------------------------------------------------------------------------------------
+#Date:29/05/2014 Commit : added new field
+
+"ALTER TABLE `teachers` ADD `profile_en` TEXT NOT NULL ,
+ADD `profile_jp` TEXT NOT NULL ,
+ADD `gender` VARCHAR( 1 ) NOT NULL ,
+ADD `interests` TEXT NOT NULL ,
+ADD `line_url_http` VARCHAR( 255 ) NOT NULL ;"
+
+
+
+
+#12-----------------------------------------------------------------------------------------------------
+#Date:29/05/2014 Commit : added new field
+
+ALTER TABLE `teachers` ADD `face_photo` VARCHAR( 255 ) NOT NULL ;
+
+
+#13-----------------------------------------------------------------------------------------------------
+#Date:29/05/2014 Commit : added new field
+
+ALTER TABLE `teachers` ADD `qr_image` VARCHAR( 256 ) NOT NULL ;
+
+
+#14-----------------------------------------------------------------------------------------------------
+#Date:03/06/2014 Commit : create log for num_line_url_shown
+
+CREATE TABLE IF NOT EXISTS `line_url_shown` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `slot_id` int(11) NOT NULL,
+  `teacher_id` int(11) NOT NULL,
+  `shown_date` datetime NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+#15---------------------------------------------------------------------------
+#Date:11/06/2014 Commit : Added new column
+ALTER TABLE `users_list` ADD `paid_through` TIMESTAMP NOT NULL AFTER `first_paid_date` ;
+
+
+#16---------------------------------------------------------------------------
+#Date:13/06/2014 Commit : Bidhan (push the common.php and then immediately  run this sql ) rename column name
+ALTER TABLE `line_url_shown` CHANGE `slot_id` `teacher_id` INT( 11 ) NOT NULL ,
+CHANGE `teacher_id` `slot_id` INT( 11 ) NOT NULL ;
+
+
+#17---------------------------------------------------------------------------
+#Date:14/06/2014 Commit : Added new column
+ALTER TABLE `teacher_slots` ADD `coaching` TINYINT( 1 ) NOT NULL DEFAULT '0';
+
+
+#18---------------------------------------------------------------------------
+#Date:17/06/2014 Commit : master_switch.switched_by = user_master.id
+ALTER TABLE `master_switch` ADD `switched_by` INT( 10 ) NOT NULL ;
+
+
+
+#19---------------------------------------------------------------------------
+#Date:17/06/2014 Commit : Remove teacher_id from line_url_shown
+ALTER TABLE `line_url_shown` DROP `teacher_id`;
+
+#20---------------------------------------------------------------------------
+#Date:17/06/2014 Commit : Removed id from `teachers` 
+ALTER TABLE `teachers` DROP `id`;
+
+
+#21---------------------------------------------------------------------------
+#Date:17/06/2014 Commit : Changed user_id to teacher_id
+ALTER TABLE `teachers` CHANGE `user_id` `teacher_id` INT( 10 ) NOT NULL COMMENT 'this teacher_id is the value from user_master.id';
+
+
+
+
+#22---------------------------------------------------------------------------
+#Date:24/06/2014 Commit : Added new column
+ALTER TABLE `users_list` ADD `converted_by` INT( 10 ) NOT NULL AFTER `dob` ;
+
+
+#23-----------------------------------------------------------------------------------
+#date:28/06/2014 Commit:: added new field for students
+ALTER TABLE `users_list` ADD `funnel` INT( 1 ) NOT NULL COMMENT '1=App, 2=Web, 3=Other, 4=Unknown' AFTER `converted_by` ;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
