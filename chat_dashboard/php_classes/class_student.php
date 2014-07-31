@@ -635,7 +635,7 @@ error_reporting(E_ALL & ~E_STRICT);
 		
 		
 		$student_cur_status = Student::getStudentStatusId($uid);
-		
+		Subscription::update_subscription_lenght($uid,$slot);
 		//unique_user_id is Not Editable
 		//$unique_user_id = $_POST['unique_user_id'];
 		/*$sql= "UPDATE users_list  SET `email` = '".$email."',

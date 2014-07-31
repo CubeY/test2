@@ -18,6 +18,7 @@ require_once("../php_classes/class_user.php");
 require_once("../php_classes/class_student.php");
 require_once("../php_classes/class_status.php");
 require_once("../php_classes/class_plan.php");
+require_once("../php_classes/class_subscription.php");
 require_once("../email/email.php");
 $db = Database::init(DB_ACCOUNTS_HOST, DB_ACCOUNTS_USER, DB_ACCOUNTS_PWD, DB_ACCOUNTS_NAME);
 

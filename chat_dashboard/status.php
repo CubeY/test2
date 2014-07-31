@@ -454,8 +454,8 @@ $at_churn_paying_app_funnel = 0;$at_churn_app_funnel =0;
 							$at_cpt = $at_cpt + $t_cpt; 
 							
 							$at_fpd = $at_fpd + $t_fpd;
-							$at_churn = $at_churn + $t_churn;
-							$at_churn_paying = $at_churn_paying +$t_churn_paying;
+							//$at_churn = $at_churn + $t_churn;
+							//$at_churn_paying = $at_churn_paying +$t_churn_paying;
 							$at_cancelled = $at_cancelled + $t_cancelled;
 							
 							
@@ -508,7 +508,8 @@ $at_churn_paying_app_funnel = 0;$at_churn_app_funnel =0;
 		
 		//$at_churn_avg = ($at_fpd >0)?round(($at_churn/$at_fpd),2):0;
 		// $at_churn_avg_c = ($at_paying_user+$at_cpt>0)?round($at_churn / ($at_paying_user+$at_cpt),2):0;
-		 				
+		$at_churn = array_sum($churn_array);
+		$at_churn_paying = array_sum($churn_array_paying);
 		$at_churn_avg_cancelled = ($at_cancelled >0)?round($at_churn / ($at_cancelled)):0;
 		$at_churn_avg_paying_cancelled = ($at_paying_user+$at_cancelled>0)?round(($at_churn +$at_churn_paying ) / ($at_paying_user +$at_cancelled)):0;
 		$at_churn_avg_paying = ($at_paying_user >0)?round($at_churn_paying / ($at_paying_user)):0;

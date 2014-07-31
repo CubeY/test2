@@ -1401,11 +1401,14 @@ error_reporting(E_ALL & ~E_STRICT);
 
 	}
 	
-	public function calculate_churn($slot,$datef)
+	public function calculate_churn($slot,$datef,$teacher_id)
 	{
 	    $db = Database::init(DB_ACCOUNTS_HOST, DB_ACCOUNTS_USER, DB_ACCOUNTS_PWD, DB_ACCOUNTS_NAME);
 		$ar =array();
-		$sql2 = "SELECT DATEDIFF(IF(cancellation_date='0000-00-00 00:00:00','".$datef."',cancellation_date ),first_paid_date)  AS dif FROM`users_list` WHERE  `slot` IN(".$slot.") AND `first_paid_date` != '0000-00-00 00:00:00' AND status = 8 ";
+		$sql2 = "SELECT DATEDIFF(IF(SL.cancellation_date='0000-00-00 00:00:00','".$datef."',SL.cancellation_date ),SL.start_date)  AS dif FROM `users_list` AS UL
+				LEFT JOIN `subscription_length` AS SL ON (SL.student_id=UL.id) 
+				WHERE  UL.`slot` IN(".$slot.") AND UL.`first_paid_date` != '0000-00-00 00:00:00' AND UL.status = 8 
+				AND SL.teacher_id = ".$teacher_id;
 		$q2 = $db->doQuery($sql2);
 		$t= 0;
 		while($res2 = mysql_fetch_assoc($q2))
@@ -1429,12 +1432,12 @@ error_reporting(E_ALL & ~E_STRICT);
 	    $db = Database::init(DB_ACCOUNTS_HOST, DB_ACCOUNTS_USER, DB_ACCOUNTS_PWD, DB_ACCOUNTS_NAME);
 		$res = array();
 		$total = 0;
-		$sql = "SELECT TS.teacher_id AS teacher_id , SUM(DATEDIFF(IF(cancellation_date='0000-00-00 00:00:00','".$datef."',cancellation_date ),first_paid_date))  AS total FROM `users_list` AS UL	
-					LEFT JOIN teacher_slots AS TS ON ( UL.slot = TS.id ) WHERE `first_paid_date` != '0000-00-00 00:00:00' AND status = 8 AND TS.teacher_id != '' ";
-		
+		$sql ="SELECT SL.teacher_id AS teacher_id , SUM(DATEDIFF(IF(SL.cancellation_date='0000-00-00 00:00:00','".$datef."',SL.cancellation_date ),SL.`start_date`)) AS total FROM `users_list` AS UL 
+		LEFT JOIN subscription_length AS SL ON (SL.student_id= UL.id ) WHERE UL.`first_paid_date` != '0000-00-00 00:00:00' AND UL.status = 8 AND SL.teacher_id != ''";
+				
 		if($funnel)
-		$sql .=" AND funnel = ".$funnel; // 1= app funnel
-		$sql .=" GROUP BY TS.teacher_id ORDER BY  TS.teacher_id ASC";
+		$sql .=" AND UL.funnel = ".$funnel; // 1= app funnel
+		$sql .=" GROUP BY SL.teacher_id ORDER BY  SL.teacher_id ASC";
 		//echo $sql;
 		$q = $db->doQuery($sql);
 		while($r = mysql_fetch_assoc($q))
@@ -1449,11 +1452,16 @@ error_reporting(E_ALL & ~E_STRICT);
 	}
 	
 	
-	public function calculate_churn_paying($slot,$datef)
+	public function calculate_churn_paying($slot,$datef,$teacher_id)
 	{
 	    $db = Database::init(DB_ACCOUNTS_HOST, DB_ACCOUNTS_USER, DB_ACCOUNTS_PWD, DB_ACCOUNTS_NAME);
 		$ar =array();
-		$sql2 = "SELECT DATEDIFF(IF(cancellation_date='0000-00-00 00:00:00','".$datef."',cancellation_date ),first_paid_date)  AS dif FROM`users_list` WHERE  `slot` IN(".$slot.") AND `first_paid_date` != '0000-00-00 00:00:00' AND status = 7 ";
+		
+		$sql2 = "SELECT DATEDIFF(IF(SL.cancellation_date='0000-00-00 00:00:00','".$datef."',SL.cancellation_date ),SL.start_date)  AS dif FROM`users_list` AS UL
+		 LEFT JOIN `subscription_length` AS SL ON (SL.student_id=UL.id) 
+		 WHERE  UL.`slot` IN(".$slot.") AND UL.`first_paid_date` != '0000-00-00 00:00:00' AND UL.status = 7 
+				AND SL.teacher_id = ".$teacher_id;
+				
 		$q2 = $db->doQuery($sql2);
 		$t= 0;
 		while($res2 = mysql_fetch_assoc($q2))
@@ -1477,11 +1485,12 @@ error_reporting(E_ALL & ~E_STRICT);
 	    $db = Database::init(DB_ACCOUNTS_HOST, DB_ACCOUNTS_USER, DB_ACCOUNTS_PWD, DB_ACCOUNTS_NAME);
 		$res = array();
 		$total = 0;
-		$sql = "SELECT TS.teacher_id AS teacher_id , SUM(DATEDIFF(IF(cancellation_date='0000-00-00 00:00:00','".$datef."',cancellation_date ),first_paid_date))  AS total FROM `users_list` AS UL	
-					LEFT JOIN teacher_slots AS TS ON ( UL.slot = TS.id ) WHERE `first_paid_date` != '0000-00-00 00:00:00' AND status = 7 AND TS.teacher_id != '' ";
+		$sql ="SELECT SL.teacher_id AS teacher_id , SUM(DATEDIFF(IF(SL.cancellation_date='0000-00-00 00:00:00','".$datef."',SL.cancellation_date ),SL.`start_date`)) AS total FROM `users_list` AS UL 
+		LEFT JOIN subscription_length AS SL ON (SL.student_id= UL.id ) WHERE UL.`first_paid_date` != '0000-00-00 00:00:00' AND UL.status = 7 AND SL.teacher_id != ''";
+		
 		if($funnel)
-		$sql .=" AND funnel = ".$funnel; // 1= app funnel
-		$sql .= " GROUP BY TS.teacher_id ORDER BY  TS.teacher_id ASC";
+		$sql .=" AND UL.funnel = ".$funnel; // 1= app funnel
+		$sql .= " GROUP BY SL.teacher_id ORDER BY  SL.teacher_id ASC";
 		//echo $sql;
 		$q = $db->doQuery($sql);
 		while($r = mysql_fetch_assoc($q))

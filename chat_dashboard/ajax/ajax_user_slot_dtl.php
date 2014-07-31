@@ -109,8 +109,8 @@ $todo = $_POST['todo'];
 							//it's simply average length of students who stayed paying
 							//if a student start subscribing 4/20 and cancelled on 5/2, churn is 30 days
 							//if he hasn't cancelled as of today (5/6), churn is 34 days
-							$churn_array = User::calculate_churn($tslot_id,$datef);
-							$churn_array_paying = User::calculate_churn_paying($tslot_id,$datef);
+							$churn_array = User::calculate_churn($tslot_id,$datef,$teacher_id);
+							$churn_array_paying = User::calculate_churn_paying($tslot_id,$datef,$teacher_id);
 							$t_churn = $t_churn + $churn_array['total'];
 							$t_churn_paying = $t_churn_paying + $churn_array_paying['total'];
 							$churn_avg = ($cancelled > 0)?round($churn_array['total']/$cancelled,2):0;
